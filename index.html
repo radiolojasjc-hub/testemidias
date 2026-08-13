@@ -15,6 +15,7 @@
         
         .top-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); border-bottom: 2px solid var(--cor); flex-wrap: nowrap; gap: 4px; flex-shrink: 0; }
         .genre-badge { background: rgba(255,255,255,0.08); padding: 3px 8px; border-radius: 30px; font-size: 0.55rem; font-weight: bold; color: #fff; border-left: 2px solid var(--cor); display: flex; align-items: center; gap: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30%; cursor: pointer; flex-shrink: 1; min-width: 40px; }
+        .genre-badge:active { transform: scale(0.95); }
         .top-buttons { display: flex; gap: 4px; align-items: center; flex-wrap: nowrap; flex-shrink: 0; }
         
         .fav-top-btn { background: rgba(255,45,127,0.15); border: 1px solid #ff2d7f; color: #ff2d7f; padding: 2px 8px; border-radius: 30px; font-size: 0.5rem; cursor: pointer; display: flex; align-items: center; gap: 3px; flex-shrink: 0; }
@@ -248,28 +249,12 @@
             'use strict';
 
             // ============================================================
-            // PLAYLIST TESTE MÍDIA - EMBARCADA DIRETAMENTE
-            // ============================================================
-            const PLAYLIST_TESTE = [
-                {"id":1,"artist":"Aline Barros","title":"Ressuscita-me","genero":"TESTE MÍDIA","src":"Aline-Barros_Ressuscita-me.mp3"},
-                {"id":2,"artist":"Aline Barros","title":"Sonda-me Usa-me","genero":"TESTE MÍDIA","src":"Aline-Barros-Sonda-me-Usa-me.mp3"},
-                {"id":3,"artist":"Anderson Freire","title":"Raridade","genero":"TESTE MÍDIA","src":"Anderson-Freire_Raridade.mp3"},
-                {"id":4,"artist":"Davi Sacer","title":"Deus de Promessas","genero":"TESTE MÍDIA","src":"Davi-Sacer_Deus-de-Promessas.mp3"},
-                {"id":5,"artist":"Bruna Karla","title":"Cicatrizes","genero":"TESTE MÍDIA","src":"Bruna-Karla_Cicatrizes.m4a"},
-                {"id":6,"artist":"Juliany","title":"Ah Jesus","genero":"TESTE MÍDIA","src":"Juliany_ah-Jesus.m4a"},
-                {"id":7,"artist":"Maquinhoa","title":"Ele no Desite","genero":"TESTE MÍDIA","src":"Maquinhoa_ele-no-desite.m4a"},
-                {"id":8,"artist":"Maria Marçal","title":"Deixa","genero":"TESTE MÍDIA","src":"Maria-Marcal_Deixa.m4a"},
-                {"id":9,"artist":"Talles Roberto","title":"Eu Escolho Deus","genero":"TESTE MÍDIA","src":"Talles-Roberto_Eu-Escolho-Eu-Escolho-Deus.m4a"},
-                {"id":10,"artist":"Thiago Brado","title":"Ninguém Te Ama Como Eu","genero":"TESTE MÍDIA","src":"Thiago-Brado_Ningu-m-Te-Ama-Como-Eu.m4a"},
-                {"id":11,"artist":"Zion Thariel","title":"Vai","genero":"TESTE MÍDIA","src":"Zion-Thariel_Vai.m4a"}
-            ];
-
-            // ============================================================
-            // CONFIGURAÇÕES
+            // CONFIGURAÇÕES - USANDO JSON EXTERNO
             // ============================================================
             const GENERO = 'TESTE MÍDIA';
             const COR = '#00f3ff';
-            const BASE_AUDIO_URL = 'https://raw.githubusercontent.com/radiolojasjc-hub/religiosa/refs/heads/main/';
+            const JSON_URL = 'https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/teste.json';
+            const BASE_URL = 'https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/';
 
             let musicas = [];
             let currentPlaylist = [];
@@ -314,6 +299,9 @@
             const backgroundAudio = document.getElementById('backgroundAudio');
             const menuPopup = document.getElementById('menuPopup');
 
+            // ============================================================
+            // FUNÇÕES AUXILIARES
+            // ============================================================
             function showNotification(msg, d = 1500) {
                 if (msg.includes('❌') || msg.includes('⚠️') || msg.includes('Erro') || msg.includes('⏭️')) {
                     return;
@@ -369,11 +357,11 @@
                 if (src && src.trim()) {
                     const nomeLimpo = src.replace(/^\.\//, '').replace(/^\/+/, '');
                     if (nomeLimpo) {
-                        urls.add(BASE_AUDIO_URL + nomeLimpo);
+                        urls.add(BASE_URL + nomeLimpo);
                     }
                     try {
                         const encoded = encodeURIComponent(nomeLimpo);
-                        urls.add(BASE_AUDIO_URL + encoded);
+                        urls.add(BASE_URL + encoded);
                     } catch(e) {}
                 }
                 
@@ -406,22 +394,25 @@
                         exts.forEach(ext => {
                             const nomeLimpo = nome.trim().replace(/[^a-zA-Z0-9\-_]/g, '');
                             if (nomeLimpo.length > 2) {
-                                urls.add(BASE_AUDIO_URL + nomeLimpo + '.' + ext);
+                                urls.add(BASE_URL + nomeLimpo + '.' + ext);
                             }
                         });
                     }
                 });
                 
                 const fallbackUrls = [
-                    `https://raw.githubusercontent.com/radiolojasjc-hub/play12/refs/heads/main/${src}`,
-                    `https://raw.githubusercontent.com/radiolojasjc-hub/play12/refs/heads/main/${src.replace(/\.[^.]+$/, '')}.mp3`,
-                    `https://raw.githubusercontent.com/radiolojasjc-hub/play12/refs/heads/main/${src.replace(/\.[^.]+$/, '')}.m4a`
+                    `https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/${src}`,
+                    `https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/${src.replace(/\.[^.]+$/, '')}.mp3`,
+                    `https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/${src.replace(/\.[^.]+$/, '')}.m4a`
                 ];
                 fallbackUrls.forEach(u => { if (u) urls.add(u); });
                 
                 return Array.from(urls);
             }
 
+            // ============================================================
+            // FAVORITOS
+            // ============================================================
             function updateFavCount() { favCount.textContent = favorites.length; }
 
             function toggleFavorito(id) {
@@ -486,17 +477,46 @@
             }
 
             // ============================================================
-            // INICIALIZAR PLAYLIST
+            // CARREGAR PLAYLIST DO JSON EXTERNO
             // ============================================================
-            function inicializarPlaylist() {
-                musicas = PLAYLIST_TESTE.map(m => ({
-                    ...m,
-                    id: m.id || `teste_${Math.random().toString(36).substr(2, 6)}`,
-                    genero: GENERO
-                }));
-                console.log(`✅ TESTE MÍDIA carregou ${musicas.length} músicas da playlist embarcada`);
+            async function carregarPlaylist() {
+                try {
+                    showLoading(true);
+                    console.log('🔄 Carregando teste.json...');
+                    const response = await fetch(JSON_URL);
+                    if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+                    let data = await response.json();
+                    
+                    if (!Array.isArray(data)) {
+                        if (data.musicas && Array.isArray(data.musicas)) data = data.musicas;
+                        else if (data.data && Array.isArray(data.data)) data = data.data;
+                        else { 
+                            const vals = Object.values(data); 
+                            if (vals.length && Array.isArray(vals[0])) data = vals[0]; 
+                            else throw new Error('Formato inválido'); 
+                        }
+                    }
+                    
+                    musicas = data.filter(m => m.src && m.src.trim() && m.title && m.title.trim());
+                    musicas.forEach(m => { 
+                        m.id = m.id || `teste_${Math.random().toString(36).substr(2, 6)}`; 
+                        m.genero = GENERO; 
+                    });
+                    
+                    console.log(`✅ TESTE MÍDIA carregou ${musicas.length} músicas do JSON externo`);
+                    showLoading(false);
+                    return true;
+                } catch (error) {
+                    console.error('❌ Erro ao carregar JSON:', error);
+                    showLoading(false);
+                    showNotification(`❌ Erro: ${error.message}`, 3000);
+                    return false;
+                }
             }
 
+            // ============================================================
+            // REPRODUÇÃO
+            // ============================================================
             function obterProximaMusica() {
                 if (tentativasFalhas > 20) {
                     tentativasFalhas = 0;
@@ -542,9 +562,6 @@
                 }
             }
 
-            // ============================================================
-            // playMusic
-            // ============================================================
             async function playMusic() {
                 if (carregandoMusica) return;
                 if (!isBackgroundActive) return;
@@ -658,6 +675,9 @@
                 tentarProximaUrl();
             }
 
+            // ============================================================
+            // CONTROLES
+            // ============================================================
             let buscaTimeout = null;
 
             function buscarMusica(termo) {
@@ -836,13 +856,16 @@
             }
 
             function recarregarPlaylist() {
-                inicializarPlaylist();
-                currentPlaylist = shuffleArray([...musicas]);
-                currentIndex = 0;
-                ultimoId = null;
-                tentativasFalhas = 0;
-                if (isBackgroundActive) setTimeout(() => playMusic(), 200);
-                showNotification('🔄 Playlist recarregada!', 1500);
+                showLoading(true);
+                carregarPlaylist().then(() => {
+                    currentPlaylist = shuffleArray([...musicas]);
+                    currentIndex = 0;
+                    ultimoId = null;
+                    tentativasFalhas = 0;
+                    if (isBackgroundActive) setTimeout(() => playMusic(), 200);
+                    showLoading(false);
+                    showNotification('🔄 Playlist recarregada!', 1500);
+                });
             }
 
             // ============================================================
@@ -854,7 +877,12 @@
                     updateFavCount();
                     renderFavList();
 
-                    inicializarPlaylist();
+                    const carregou = await carregarPlaylist();
+                    if (!carregou || musicas.length === 0) {
+                        showNotification('❌ Nenhuma música carregada', 3000);
+                        setTimeout(() => { location.reload(); }, 3000);
+                        return;
+                    }
 
                     currentPlaylist = shuffleArray([...musicas]);
                     currentIndex = 0;
