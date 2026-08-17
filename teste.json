@@ -4,5 +4,5 @@
 {"id":3,"artist":"a ha Take On Me Official Video 4K","title":"a ha Take On Me Official Video 4K","genero":"TESTE","src":"a_ha_Take_On_Me_Official_Video_4K.mp3"},
 {"id":4,"artist":"EngelbertHumperdinck","title":"A Man Without Love","genero":"TESTE","src":"AManWithoutLove_EngelbertHumperdinck.mp3"},
 {"id":5,"artist":"ABBA","title":"Dancing Queen","genero":"TESTE","src":"DancingQueen_ABBA.mp3"},
-  "id":6,"artist":"Ivete-Sangalo","title":"Ah-Como-Eu-Amei.mp3","genero":"TESTE","src":"Ivete-Sangalo-Ah-Como-Eu-Amei.mp3"}
+ { "id":6,"artist":"Ivete-Sangalo","title":"Ah-Como-Eu-Amei.mp3","genero":"TESTE","src":"Ivete-Sangalo-Ah-Como-Eu-Amei.mp3"}
 ]
