@@ -4,5 +4,6 @@
   {"id":3,"artist":"a-ha","title":"Take On Me","genero":"TESTE","src":"a_ha_Take_On_Me_Official_Video_4K.mp3"},
   {"id":4,"artist":"Engelbert Humperdinck","title":"A Man Without Love","genero":"TESTE","src":"AManWithoutLove_EngelbertHumperdinck.mp3"},
   {"id":5,"artist":"ABBA","title":"Dancing Queen","genero":"TESTE","src":"DancingQueen_ABBA.mp3"},
-  {"id":6,"artist":"Ivete Sangalo","title":"Ah Como Eu Amei","genero":"TESTE","src":"Ivete-Sangalo-Ah-Como-Eu-Amei.mp3"}
+  {"id":6,"artist":"Ivete Sangalo","title":"Ah Como Eu Amei","genero":"TESTE","src":"Ivete-Sangalo-Ah-Como-Eu-Amei.mp3"},
+   {"id":6,"artist":"Canario","title":"Lenda_do_Guaran_Chuva","genero":"TESTE","src":"Lenda_do_Guaran_Chuva-.m4a"}
 ]
