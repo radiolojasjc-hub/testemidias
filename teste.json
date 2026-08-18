@@ -5,5 +5,6 @@
   {"id":4,"artist":"Engelbert Humperdinck","title":"A Man Without Love","genero":"TESTE","src":"AManWithoutLove_EngelbertHumperdinck.mp3"},
   {"id":5,"artist":"ABBA","title":"Dancing Queen","genero":"TESTE","src":"DancingQueen_ABBA.mp3"},
   {"id":6,"artist":"Ivete Sangalo","title":"Ah Como Eu Amei","genero":"TESTE","src":"Ivete-Sangalo-Ah-Como-Eu-Amei.mp3"},
-   {"id":6,"artist":"Canario","title":"Lenda_do_Guaran_Chuva","genero":"TESTE","src":"Lenda_do_Guaran_Chuva-.m4a"}
+   {"id":7,"artist":"Canario","title":"Lenda_do_Guaran_Chuva","genero":"TESTE","src":"Lenda_do_Guaran_Chuva-.m4a"},
+   {"id":8,"artist":"Zé-cantor-e-Brasas-do-Forró","title":"Pout-Pourri","genero":"TESTE","src":"Zé-cantor-e-Brasas-do-Forró.mp3"}
 ]
