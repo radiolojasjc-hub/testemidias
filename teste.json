@@ -6,5 +6,11 @@
   {"id":5,"artist":"ABBA","title":"Dancing Queen","genero":"TESTE","src":"DancingQueen_ABBA.mp3"},
   {"id":6,"artist":"Ivete Sangalo","title":"Ah Como Eu Amei","genero":"TESTE","src":"Ivete-Sangalo-Ah-Como-Eu-Amei.mp3"},
    {"id":7,"artist":"Canario","title":"Lenda_do_Guaran_Chuva","genero":"TESTE","src":"Lenda_do_Guaran_Chuva-.m4a"},
-   {"id":8,"artist":"a-ha","title":"ake-On-Me","genero":"TESTE","src":"a-ha-ake-On-Me.mp3"}
+   {"id":8,"artist":"a-ha","title":"ake-On-Me","genero":"TESTE","src":"a-ha-ake-On-Me.mp3"},
+  {"id":9,"artist":"Dex","title":"Forro Da Multid","genero":"POP","src":"ForroDaMultid_Dex.mp3"},
+{"id":10,"artist":"Piduca","title":"Homem Sem vergonha","genero":"POP","src":"HomemSemvergonha_Piduca.mp3"},
+{"id":11,"artist":"Canarios","title":"Lenda do Guaran Chuva","genero":"POP","src":"LendadoGuaranChuva_Canarios.m4a"},
+{"id":12,"artist":"Pinduca","title":"Nossa Vida E Um Buraco","genero":"POP","src":"NossaVidaEUmBuraco_Pinduca.mp3"},
+{"id":13,"artist":"Neo-pi-neo","title":"A Rural A Rural","genero":"POP","src":"ARuralARural_Neo-pi-neo.m4a"}
+]
 ]
