@@ -46,7 +46,7 @@
         .menu-popup button:active { background: var(--cor); color: #000; }
         .menu-popup .close-menu-btn { background: rgba(255,45,127,0.2); border: 1px solid #ff2d7f; color: #ff2d7f; }
 
-        /* =================== INFO SCROLL (SUBIDO) =================== */
+        /* =================== INFO SCROLL =================== */
         .info-scroll { position: fixed; top: 36px; left: 0; right: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); padding: 6px 12px; z-index: 30; border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; white-space: nowrap; }
         .info-scroll p { color: white; font-size: 0.85rem; font-weight: 900; letter-spacing: 2px; animation: scrollText 20s linear infinite; display: inline-block; padding-right: 50px; text-shadow: 0 0 30px rgba(0,0,0,0.8); text-transform: uppercase; }
         @keyframes scrollText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -99,7 +99,7 @@
         .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 10px; height: 10px; border-radius: 50%; background: var(--cor); cursor: pointer; }
         .volume-slider::-moz-range-thumb { width: 10px; height: 10px; border-radius: 50%; background: var(--cor); cursor: pointer; }
 
-        /* =================== FAB (BOTÃO FLUTUANTE) =================== */
+        /* =================== FAB =================== */
         .fab-container { position: fixed; bottom: 100px; right: 12px; z-index: 40; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
         .fab-main { background: linear-gradient(135deg, #3a3a3a, #1a1a1a); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: white; font-size: 1.2rem; box-shadow: 0 0 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
         .fab-main:active { transform: scale(0.92); }
@@ -110,7 +110,7 @@
         .fab-sub-btn:active { background: var(--cor); color: #000; }
         .fab-sub-btn i { font-size: 0.85rem; width: 18px; text-align: center; pointer-events: none; }
 
-        /* =================== SPLASH E TAP TO START =================== */
+        /* =================== SPLASH =================== */
         #splash { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0a0a0a; display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
         #splash.hidden { opacity: 0; pointer-events: none; }
         .splash-loading { text-align: center; color: white; }
@@ -129,7 +129,7 @@
         #loadingOverlay i { font-size: 3rem; color: var(--cor); animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* =================== MODAIS (FAVORITOS E PLAYLIST) =================== */
+        /* =================== MODAIS =================== */
         .fav-modal, .playlist-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.9); background: rgba(20,20,40,0.95); backdrop-filter: blur(20px); border-radius: 30px; padding: 25px; z-index: 5000; width: 90%; max-width: 380px; text-align: center; display: none; flex-direction: column; opacity: 0; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 0 40px rgba(0,243,255,0.2), 0 0 80px rgba(255,45,127,0.1); }
         .fav-modal.open, .playlist-modal.open { display: flex; opacity: 1; transform: translate(-50%, -50%) scale(1); border-image: linear-gradient(135deg, var(--cor), var(--cor)) 1; }
         .fav-modal h3, .playlist-modal h3 { font-size: 1.2rem; margin-bottom: 15px; background: linear-gradient(135deg, var(--cor), var(--cor)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
@@ -176,13 +176,10 @@
     </style>
 </head>
 <body>
-    <!-- =================== VÍDEO DE FUNDO =================== -->
-    <!-- O src será preenchido dinamicamente com cache busting -->
-    <video id="bgVideo" class="bg" autoplay loop muted playsinline>
-        <source src="" type="video/mp4">
-    </video>
+    <!-- VÍDEO DE FUNDO (sem src vazio) -->
+    <video id="bgVideo" class="bg" autoplay loop muted playsinline></video>
 
-    <!-- =================== SPLASH =================== -->
+    <!-- SPLASH -->
     <div id="splash">
         <div class="splash-loading">
             <i class="fas fa-circle-notch fa-spin"></i>
@@ -190,10 +187,10 @@
         </div>
     </div>
 
-    <!-- =================== BOTÃO ATIVAR =================== -->
+    <!-- BOTÃO ATIVAR -->
     <div id="tap-to-start">▶ ATIVAR TESTE MÍDIA</div>
 
-    <!-- =================== APP =================== -->
+    <!-- APP -->
     <div class="app" id="appContainer" style="display: none;">
 
         <!-- TOP BAR -->
@@ -212,7 +209,7 @@
             </div>
         </div>
 
-        <!-- INFO SCROLL (LETREIRO) -->
+        <!-- INFO SCROLL -->
         <div class="info-scroll" id="infoScroll">
             <p id="scrollText">🎵 TESTE MÍDIA - TOCANDO AGORA 🎵</p>
         </div>
@@ -236,7 +233,7 @@
         <div class="teaching-bar">👆 Toque na tela para <span class="cyan">controles</span></div>
     </div>
 
-    <!-- =================== MODAL FAVORITOS =================== -->
+    <!-- MODAL FAVORITOS -->
     <div class="fav-modal" id="favModal">
         <button class="close-fav" id="closeFavModal"><i class="fas fa-times"></i></button>
         <h3><i class="fas fa-heart" style="color:#ff2d7f; -webkit-text-fill-color: #ff2d7f;"></i> Suas Favoritas</h3>
@@ -244,7 +241,7 @@
         <button class="close-btn" id="closeFavBtn">FECHAR</button>
     </div>
 
-    <!-- =================== MODAL PLAYLIST =================== -->
+    <!-- MODAL PLAYLIST -->
     <div class="playlist-modal" id="playlistModal">
         <button class="close-playlist" id="closePlaylistModal"><i class="fas fa-times"></i></button>
         <h3><i class="fas fa-list-ul" style="color:var(--cor); -webkit-text-fill-color: var(--cor);"></i> Lista de Músicas</h3>
@@ -252,7 +249,7 @@
         <button class="close-btn" id="closePlaylistBtn">FECHAR</button>
     </div>
 
-    <!-- =================== BOTTOM CONTROLS =================== -->
+    <!-- BOTTOM CONTROLS -->
     <div class="bottom-controls" id="bottomControls">
         <div class="progress-time"><span id="currentTime">0:00</span><span id="totalTime">0:00</span></div>
         <div class="progress-bar" id="progressBar"><div class="progress-fill" id="progressFill"></div></div>
@@ -269,7 +266,7 @@
         </div>
     </div>
 
-    <!-- =================== FAB =================== -->
+    <!-- FAB -->
     <div class="fab-container" id="fabContainer">
         <div class="fab-sub" id="fabSub">
             <button class="fab-sub-btn" id="fabVoltar"><i class="fas fa-arrow-left"></i> Voltar ao PLAY 12</button>
@@ -279,7 +276,7 @@
         <div class="fab-main" id="fabMain"><i class="fas fa-plus"></i></div>
     </div>
 
-    <!-- =================== MENU POPUP =================== -->
+    <!-- MENU POPUP -->
     <div class="menu-popup" id="menuPopup">
         <button class="close-menu-btn" id="closeMenuBtn"><i class="fas fa-times"></i> Fechar</button>
         <button id="fullscreenMenuBtn"><i class="fas fa-expand"></i> Tela Cheia</button>
@@ -288,15 +285,15 @@
         <button id="playlistMenuBtn"><i class="fas fa-list"></i> Ver Lista</button>
     </div>
 
-    <!-- =================== NOTIFICAÇÃO E LOADING =================== -->
+    <!-- NOTIFICAÇÃO E LOADING -->
     <div class="notification" id="notification">Mensagem</div>
     <div id="loadingOverlay"><i class="fas fa-spinner fa-spin"></i></div>
 
-    <!-- =================== ÁUDIO =================== -->
+    <!-- ÁUDIOS -->
     <audio id="musicPlayer" preload="auto"></audio>
     <audio id="backgroundAudio" preload="auto" style="display: none;"></audio>
 
-    <!-- =================== JAVASCRIPT =================== -->
+    <!-- JAVASCRIPT -->
     <script>
         (function() {
             'use strict';
@@ -306,10 +303,6 @@
             // ================================================================
             const GENERO = 'TESTE MÍDIA';
             const COR = '#00f3ff';
-            // --- CACHE BUSTING MARKDOWN ---
-            // Para forçar o navegador a recarregar o JSON e o vídeo a cada visita,
-            // adicionamos um parâmetro único (?v=timestamp) às URLs.
-            // Isso evita que versões antigas fiquem no cache do navegador.
             const JSON_URL = 'https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/teste.json';
             const BASE_URL = 'https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/';
             const VIDEO_FILE = 'religiosa.mp4';
@@ -319,7 +312,7 @@
             let currentIndex = 0;
             let isPlaying = false;
             let shuffleMode = false;
-            let repeatMode = 0; // 0 = sem repetição, 1 = repetir uma, 2 = repetir todas
+            let repeatMode = 0;
             let isBackgroundActive = false;
             let timerInterval = null;
             let historicoReproducao = [];
@@ -331,6 +324,9 @@
             let tentativasFalhas = 0;
             let savedTime = 0;
 
+            // ================================================================
+            // REFERÊNCIAS DOM
+            // ================================================================
             const audio = document.getElementById('musicPlayer');
             const playBtn = document.getElementById('playBtn');
             const progressFill = document.getElementById('progressFill');
@@ -362,13 +358,14 @@
             const volumeSlider = document.getElementById('volumeSlider');
             const volumeIcon = document.getElementById('volumeIcon');
 
+            // ✅ DECLARADAS ANTES DE QUALQUER USO (corrige o erro)
+            const fabMain = document.getElementById('fabMain');
+            const fabSub = document.getElementById('fabSub');
+
             // ================================================================
             // FUNÇÕES AUXILIARES
             // ================================================================
             function showNotification(msg, d = 1500) {
-                if (msg.includes('❌') || msg.includes('⚠️') || msg.includes('Erro') || msg.includes('⏭️')) {
-                    return;
-                }
                 notification.textContent = msg;
                 notification.classList.add('show');
                 setTimeout(() => notification.classList.remove('show'), d);
@@ -410,9 +407,6 @@
                 window.location.href = 'https://radiolojasjc-hub.github.io/play12/';
             }
 
-            // ================================================================
-            // CACHE BUSTING HELPER
-            // ================================================================
             function urlWithCacheBust(url) {
                 const separator = url.includes('?') ? '&' : '?';
                 return url + separator + 'v=' + Date.now();
@@ -472,9 +466,9 @@
                 });
 
                 const fallbackUrls = [
-                    `https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/${src}`,
-                    `https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/${src.replace(/\.[^.]+$/, '')}.mp3`,
-                    `https://raw.githubusercontent.com/radiolojasjc-hub/testemidias/refs/heads/main/${src.replace(/\.[^.]+$/, '')}.m4a`
+                    `${BASE_URL}${src}`,
+                    `${BASE_URL}${src.replace(/\.[^.]+$/, '')}.mp3`,
+                    `${BASE_URL}${src.replace(/\.[^.]+$/, '')}.m4a`
                 ];
                 fallbackUrls.forEach(u => { if (u) urls.add(u); });
 
@@ -532,21 +526,6 @@
 
             function openFavModal() { renderFavList(); document.getElementById('favModal').classList.add('open'); }
 
-            function entrarModoFavoritos() {
-                if (favorites.length === 0) { return; }
-                const favs = favorites.map(id => musicas.find(m => m.id === id)).filter(Boolean);
-                if (favs.length === 0) { return; }
-                currentPlaylist = shuffleArray([...favs]);
-                currentIndex = 0;
-                historicoReproducao = [];
-                ultimoId = null;
-                const m = currentPlaylist[0];
-                if (m) { updateNowPlaying(m); adicionarAoHistorico(m); }
-                genreBadge.innerHTML = `<i class="fas fa-heart" style="color:#ff2d7f;"></i> ❤️ FAVORITOS (${favorites.length})`;
-                genreBadge.className = 'genre-badge favoritos';
-                if (isBackgroundActive) setTimeout(() => playMusic(), 200);
-            }
-
             // ================================================================
             // PLAYLIST MODAL
             // ================================================================
@@ -577,13 +556,12 @@
             function openPlaylistModal() { renderPlaylistModal(); document.getElementById('playlistModal').classList.add('open'); }
 
             // ================================================================
-            // CARREGAR PLAYLIST COM CACHE BUSTING
+            // CARREGAR PLAYLIST
             // ================================================================
             async function carregarPlaylist() {
                 try {
                     showLoading(true);
                     const jsonUrl = urlWithCacheBust(JSON_URL);
-                    console.log('🔄 Carregando JSON com cache busting:', jsonUrl);
                     const response = await fetch(jsonUrl);
                     if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
                     let data = await response.json();
@@ -604,11 +582,9 @@
                         m.genero = GENERO;
                     });
 
-                    console.log(`✅ TESTE MÍDIA carregou ${musicas.length} músicas do JSON externo`);
                     showLoading(false);
                     return true;
                 } catch (error) {
-                    console.error('❌ Erro ao carregar JSON:', error);
                     showLoading(false);
                     showNotification(`❌ Erro: ${error.message}`, 3000);
                     return false;
@@ -655,7 +631,12 @@
                 return musica;
             }
 
-            function adicionarAoHistorico(m) { if (!m) return; historicoReproducao = historicoReproducao.filter(m2 => m2.id !== m.id); historicoReproducao.unshift(m); if (historicoReproducao.length > 25) historicoReproducao.pop(); }
+            function adicionarAoHistorico(m) {
+                if (!m) return;
+                historicoReproducao = historicoReproducao.filter(m2 => m2.id !== m.id);
+                historicoReproducao.unshift(m);
+                if (historicoReproducao.length > 25) historicoReproducao.pop();
+            }
 
             function updateNowPlaying(t) {
                 if (t) {
@@ -939,22 +920,6 @@
                         if (Math.floor(audio.currentTime) % 5 === 0) {
                             salvarEstado(ultimoId, audio.currentTime, true);
                         }
-                        if (audio.currentTime >= audio.duration - 0.5) {
-                            if (!carregandoMusica) {
-                                tentativasFalhas = 0;
-                                if (repeatMode === 1) {
-                                    const currentTrack = currentPlaylist[currentIndex - 1];
-                                    if (currentTrack) {
-                                        audio.currentTime = 0;
-                                        audio.play();
-                                    } else {
-                                        nextTrack();
-                                    }
-                                } else {
-                                    nextTrack();
-                                }
-                            }
-                        }
                     }
                 }, 200);
             }
@@ -1074,13 +1039,16 @@
             }
 
             // ================================================================
-            // CACHE BUSTING DO VÍDEO
+            // VÍDEO COM CACHE BUSTING (usa BASE_URL)
             // ================================================================
             function setVideoWithCacheBust() {
-                const videoSrc = urlWithCacheBust(VIDEO_FILE);
-                bgVideo.querySelector('source').src = videoSrc;
+                const videoSrc = urlWithCacheBust(BASE_URL + VIDEO_FILE);
+                bgVideo.innerHTML = '';
+                const source = document.createElement('source');
+                source.src = videoSrc;
+                source.type = 'video/mp4';
+                bgVideo.appendChild(source);
                 bgVideo.load();
-                console.log('🎥 Vídeo com cache busting:', videoSrc);
             }
 
             // ================================================================
@@ -1117,7 +1085,6 @@
                         }, 500);
                     }, 500);
                 } catch (err) {
-                    console.error('Erro ao iniciar:', err);
                     splash.innerHTML = `<div class="splash-loading"><i class="fas fa-exclamation-triangle"></i><p>Erro: ${err.message}</p><button onclick="location.reload()" style="margin-top:10px;padding:8px 20px;border-radius:20px;border:none;background:${COR};color:#000;font-weight:bold;">Recarregar</button></div>`;
                 }
             }
@@ -1143,7 +1110,7 @@
                 if (m) { toggleFavorito(m.id); renderFavList(); updateFavCount(); }
             });
 
-            document.getElementById('favTopBtn').addEventListener('click', openFavModal);
+            favTopBtn.addEventListener('click', openFavModal);
             document.getElementById('closeFavModal').addEventListener('click', () => document.getElementById('favModal').classList.remove('open'));
             document.getElementById('closeFavBtn').addEventListener('click', () => document.getElementById('favModal').classList.remove('open'));
 
@@ -1153,8 +1120,6 @@
             document.getElementById('closePlaylistBtn').addEventListener('click', () => document.getElementById('playlistModal').classList.remove('open'));
             document.getElementById('playlistModal').addEventListener('click', (e) => { if (e.target === document.getElementById('playlistModal')) document.getElementById('playlistModal').classList.remove('open'); });
 
-            const fabMain = document.getElementById('fabMain');
-            const fabSub = document.getElementById('fabSub');
             fabMain.addEventListener('click', () => {
                 fabOpen = !fabOpen;
                 fabSub.classList.toggle('open', fabOpen);
@@ -1248,7 +1213,7 @@
             document.getElementById('favModal').addEventListener('click', (e) => { if (e.target === document.getElementById('favModal')) document.getElementById('favModal').classList.remove('open'); });
 
             let lastTap = 0;
-            document.getElementById('nowPlaying').addEventListener('click', (e) => {
+            document.getElementById('nowPlaying').addEventListener('click', () => {
                 const now = Date.now();
                 if (now - lastTap < 300 && now - lastTap > 50) {
                     const m = currentPlaylist[currentIndex % currentPlaylist.length] || currentPlaylist[0];
@@ -1258,7 +1223,6 @@
                 showControls();
             });
 
-            // Volume
             volumeSlider.addEventListener('input', (e) => {
                 const val = e.target.value;
                 atualizarVolume(val);
